@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title data-i18n="site.title">European Accessibility Act (EAA) — Whitepaper for Enterprise</title>
+  <meta name="description" content="Enterprise-grade whitepaper for the European Accessibility Act (EAA): scope, compliance, EN 301 549 ⇄ WCAG mapping, enterprise blueprint, front-end tips, and sector examples." />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a href="#main" class="skip-link" data-i18n="ui.skip">Skip to main content</a>
+
+  <header class="site-top" role="banner">
+    <div class="container navline">
+      <div class="brand">EAA</div>
+      <nav aria-label="Primary">
+        <a href="#executive" data-i18n="nav.exec">Executive Summary</a>
+        <a href="#act" data-i18n="nav.act">The Act</a>
+        <a href="#norms" data-i18n="nav.norms">Norms</a>
+        <a href="#tech" data-i18n="nav.tech">Tech Mapping</a>
+        <a href="#frontend" data-i18n="nav.frontend">Front‑end</a>
+        <a href="#usecases" data-i18n="nav.usecases">Use cases</a>
+        <a href="#blueprint" data-i18n="nav.blueprint">Blueprint</a>
+        <a href="#checklist" data-i18n="nav.checklist">Checklist</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <div class="lang">
+        <button id="btn-en" class="btn btn-ghost" aria-pressed="true" aria-label="Switch to English">EN</button>
+        <button id="btn-fr" class="btn btn-ghost" aria-pressed="false" aria-label="Passer en français">FR</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="container">
+        <h1 data-i18n="hero.title">European Accessibility Act — the enterprise playbook</h1>
+        <p class="tagline" data-i18n="hero.tagline">
+          Crystal‑clear guidance, EN 301 549 ⇄ WCAG mapping, roll‑out blueprint, sector‑specific examples, and front‑end code that just works.
+        </p>
+        <div class="cta" role="group" aria-label="Call to action">
+          <a class="btn" id="cta-email" href="mailto:you@company.com?subject=EAA%20consulting%20request&body=Hello,%20I'd%20like%20to%20discuss%20EAA%20compliance%20for%20our%20organization." data-i18n="cta.email">Email me for consulting</a>
+          <a class="btn btn-outline" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019L0882" target="_blank" rel="noopener" data-i18n="cta.basis">Read the legal basis (EUR‑Lex)</a>
+        </div>
+        <p class="mini" data-i18n="hero.note">Built for large organizations. Bilingual (EN/FR). No dependencies.</p>
+      </div>
+    </section>
+  </header>
+
+  <main id="main" role="main">
+    <section id="executive" class="container">
+      <h2 data-i18n="exec.h">Executive summary</h2>
+      <p data-i18n="exec.p1">
+        The European Accessibility Act (Directive (EU) 2019/882) sets functional accessibility requirements for key digital products and services
+        (consumer ICT, self‑service terminals, electronic communications incl. 112, AVMS access, passenger transport digital elements, banking,
+        e‑books, e‑commerce). Transposition was due 28 June 2022; application 28 June 2025; transitions until 28 June 2030 for services relying
+        on products already in operation; self‑service terminals may remain until end of economic life (max 20 years).
+      </p>
+      <div class="kpi">
+        <div class="pill">
+          <div class="k-num">28/06/2025</div>
+          <div class="k-label" data-i18n="exec.k1">Application date</div>
+        </div>
+        <div class="pill">
+          <div class="k-num">2030</div>
+          <div class="k-label" data-i18n="exec.k2">Service transition period</div>
+        </div>
+        <div class="pill">
+          <div class="k-num">≤ 20y</div>
+          <div class="k-label" data-i18n="exec.k3">Self‑service kiosks</div>
+        </div>
+      </div>
+      <div class="callout" data-i18n="exec.note">
+        Presumption of conformity: comply with harmonized standards (e.g., EN 301 549). EN 301 549 largely aligns to WCAG 2.1; adopting WCAG 2.2 improves robustness.
+      </div>
+    </section>
+
+    <section id="act" class="container">
+      <h2 data-i18n="act.h">The Act — in plain words, still rigorous</h2>
+      <div class="cols2">
+        <p data-i18n="act.p1">
+          The EAA focuses on functional outcomes (Annex I): perceivability, operability (keyboard), understandability, and assistive technology compatibility.
+          Obligations include EU Declaration of Conformity, CE marking (for products), market surveillance, and public information. Derogations
+          (disproportionate burden, fundamental alteration) must be documented and remain auditable.
+        </p>
+        <p data-i18n="act.p2">
+          For services, keep the public informed (Annex V) and maintain compliance over time. For products, maintain technical documentation and traceability.
+          Large organizations should implement at scale and embed accessibility into procurement, design systems, and CI/CD.
+        </p>
+      </div>
+      <p class="mini">
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019L0882" target="_blank" rel="noopener">EUR‑Lex: Directive 2019/882</a>
+      </p>
+    </section>
+
+    <section id="norms" class="container">
+      <h2 data-i18n="norms.h">Harmonized standards & presumption</h2>
+      <p data-i18n="norms.p1">
+        Harmonized standards published in the EU Official Journal give presumption of conformity. For ICT, EN 301 549 (v3.2.1) covers web, apps,
+        documents, software, and equipment, and strongly references WCAG 2.1. Many teams also adopt WCAG 2.2 to future‑proof without breaking alignment.
+      </p>
+      <div class="card">
+        <h3 data-i18n="norms.w3c">W3C essentials</h3>
+        <ul>
+          <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">WCAG 2.2 (TR)</a> · <a href="https://www.w3.org/WAI/WCAG22/Understanding/" target="_blank" rel="noopener">Understanding</a> · <a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener">QuickRef</a></li>
+          <li><a href="https://www.w3.org/TR/wai-aria-1.2/" target="_blank" rel="noopener">WAI‑ARIA 1.2</a> · <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" rel="noopener">APG</a> · <a href="https://www.w3.org/TR/accname-1.2/" target="_blank" rel="noopener">Accessible Name 1.2</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tech" class="container">
+      <h2 data-i18n="tech.h">Technical mapping — EN 301 549 ⇄ WCAG (POUR)</h2>
+      <ul class="bullets">
+        <li data-i18n="tech.b1"><strong>Semantic structure</strong>: 1.3.1, 1.3.2, 2.4.6 — headings, lists, tables, explicit relationships.</li>
+        <li data-i18n="tech.b2"><strong>Navigation / bypass</strong>: 2.4.1, 2.4.3, 2.4.4 — skip link, focus order, link purpose.</li>
+        <li data-i18n="tech.b3"><strong>Keyboard & focus</strong>: 2.1.1, 2.1.2, 2.4.7 + 2.5.8 (target size).</li>
+        <li data-i18n="tech.b4"><strong>Color & contrast</strong>: 1.4.3, 1.4.11, 1.4.10, 1.4.1 — readability, 320 px reflow, no color‑only cues.</li>
+        <li data-i18n="tech.b5"><strong>Images & media</strong>: 1.1.1, 1.2.x — alt text, captions, audio description.</li>
+        <li data-i18n="tech.b6"><strong>Forms</strong>: 3.3.x, 1.3.5, 3.3.7/3.3.8 — labels, help, errors, autocomplete.</li>
+        <li data-i18n="tech.b7"><strong>Robustness</strong>: 4.1.2, 4.1.3 — name/role/value, status messages.</li>
+      </ul>
+    </section>
+
+    <section id="frontend" class="container">
+      <h2 data-i18n="fe.h">Front‑end tips (copy‑paste‑able)</h2>
+
+      <h3 data-i18n="fe.skip">1) Skip link & landmarks</h3>
+      <pre class="code"><code>&lt;a class="skip-link" href="#main"&gt;Skip to main content&lt;/a&gt;
+&lt;header role="banner"&gt;…&lt;/header&gt;
+&lt;nav aria-label="Primary"&gt;…&lt;/nav&gt;
+&lt;main id="main" role="main"&gt;…&lt;/main&gt;
+&lt;footer role="contentinfo"&gt;…&lt;/footer&gt;
+
+.skip-link{position:absolute;left:-9999px;top:0}
+.skip-link:focus{left:0;padding:.5rem 1rem;outline:2px solid #000;box-shadow:0 0 0 4px #fff;background:#fff;color:#000}</code></pre>
+
+      <h3 data-i18n="fe.focus">2) Visible focus (tokenized)</h3>
+      <pre class="code"><code>:root{--focus-outer:#000;--focus-mid:#fff}
+:focus-visible{outline:2px solid var(--focus-outer);box-shadow:0 0 0 4px var(--focus-mid)}
+button:focus-visible{outline-offset:2px}</code></pre>
+
+      <h3 data-i18n="fe.alt">3) Images: the right <code>alt</code></h3>
+      <pre class="code"><code>&lt;img src="hero.jpg" alt=""&gt; <!-- decorative -->
+&lt;img src="chart.png" alt="Monthly sales trend (Jan–Jun)"&gt; <!-- informative --></code></pre>
+
+      <h3 data-i18n="fe.links">4) Buttons, links, accessible name</h3>
+      <pre class="code"><code>&lt;button type="button"&gt;Open menu&lt;/button&gt;
+&lt;a href="/pricing"&gt;View pricing&lt;/a&gt; <!-- avoid generic “Click here” --></code></pre>
+
+      <h3 data-i18n="fe.forms">5) Checkout forms (e‑commerce)</h3>
+      <pre class="code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" name="email" type="email" autocomplete="email" required aria-describedby="h-email"&gt;
+&lt;div id="h-email"&gt;We’ll only use this to send your receipt.&lt;/div&gt;
+&lt;div class="error" role="alert"&gt;Invalid email&lt;/div&gt;</code></pre>
+    </section>
+
+    <section id="usecases" class="container">
+      <h2 data-i18n="uc.h">Use cases & enterprise contexts</h2>
+      <div class="use-grid">
+        <div class="card">
+          <h3 data-i18n="uc.ec.h">E‑commerce</h3>
+          <ul class="bullets">
+            <li data-i18n="uc.ec.b1">Product cards: real buttons/links; color + icon, not color only.</li>
+            <li data-i18n="uc.ec.b2">Facet filters: checkbox groups with group label; live region for result counts.</li>
+            <li data-i18n="uc.ec.b3">Cart & checkout: labels, errors, address autocomplete with proper hints; clear button names.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="uc.bank.h">Banking</h3>
+          <ul class="bullets">
+            <li data-i18n="uc.bank.b1">Strong focus states; no keyboard traps in OTP/2FA flows.</li>
+            <li data-i18n="uc.bank.b2">Statements/downloads: provide accessible HTML or tagged PDFs.</li>
+            <li data-i18n="uc.bank.b3">Charts: provide tables and text summaries; non‑color cues.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="uc.transport.h">Passenger transport</h3>
+          <ul class="bullets">
+            <li data-i18n="uc.transport.b1">Timetables: proper table headers (scope), clear real‑time status with live regions.</li>
+            <li data-i18n="uc.transport.b2">Ticketing flows: keyboard operable seat maps; focus management between steps.</li>
+            <li data-i18n="uc.transport.b3">Kiosks: target size ≥ 24×24 px; high contrast; audio/tactile options.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="uc.media.h">AVMS / Media</h3>
+          <ul class="bullets">
+            <li data-i18n="uc.media.b1">Captions by default; audio description where needed; keyboard media controls.</li>
+            <li data-i18n="uc.media.b2">Avoid autoplay; provide transcript.</li>
+            <li data-i18n="uc.media.b3">Player buttons with accessible names; visible focus.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="blueprint" class="container">
+      <h2 data-i18n="bp.h">90‑day enterprise blueprint</h2>
+      <ol class="steps">
+        <li data-i18n="bp.s1"><strong>Governance</strong>: executive sponsor, policy, product owner, accessibility lead, risk & KPIs.</li>
+        <li data-i18n="bp.s2"><strong>Design system</strong>: tokens (colors, focus, target sizes), APG‑compliant components, docs.</li>
+        <li data-i18n="bp.s3"><strong>CI/CD</strong>: a11y lint, axe‑core/pa11y/jest‑axe, visual tests, contrast budgets, PR reports.</li>
+        <li data-i18n="bp.s4"><strong>Audits</strong>: manual keyboard/AT, representative sample, prioritized fixes.</li>
+        <li data-i18n="bp.s5"><strong>Vendors</strong>: EN 301 549/WCAG clauses, VPAT/EN 301 549 report, remediation SLAs, audit rights.</li>
+        <li data-i18n="bp.s6"><strong>Training & change</strong>: upskill designers/devs/PO/QA; coaching; communities of practice.</li>
+      </ol>
+    </section>
+
+    <section id="checklist" class="container">
+      <h2 data-i18n="cl.h">AA checklist</h2>
+      <ul class="checklist">
+        <li data-i18n="cl.i1">H1 only once; logical H2/H3; no skipped levels.</li>
+        <li data-i18n="cl.i2">Skip link; landmarks &lt;main&gt;/&lt;nav&gt; etc.</li>
+        <li data-i18n="cl.i3">Full keyboard navigation; focus always visible.</li>
+        <li data-i18n="cl.i4">Links with meaningful text; no “click here”.</li>
+        <li data-i18n="cl.i5">Images: good alt; decorative as empty alt.</li>
+        <li data-i18n="cl.i6">Contrast (text ≥ 4.5:1; UI ≥ 3:1); strong :focus.</li>
+        <li data-i18n="cl.i7">Forms: labels, help, errors, ARIA status, autocomplete.</li>
+        <li data-i18n="cl.i8">Reflow at 320 px; 200% zoom; no horizontal scroll.</li>
+        <li data-i18n="cl.i9">Document language; mark language changes.</li>
+        <li data-i18n="cl.i10">Downloadable docs accessible or HTML alternative.</li>
+        <li data-i18n="cl.i11">Public accessibility statement + feedback channel.</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 data-i18n="contact.h">Consulting — let’s talk</h2>
+      <p data-i18n="contact.p">
+        Need enterprise‑scale help (EN 301 549 audits, design system hardening, CI/CD, training, vendor governance)?
+      </p>
+      <div class="cta">
+        <a class="btn" id="cta-email-2" href="mailto:mohamed.mokhtari.pro@gmail.com?subject=EAA%20consulting%20request&body=Hello,%20I'd%20like%20to%20discuss%20EAA%20compliance%20for%20our%20organization." data-i18n="cta.email">Email me for consulting</a>
+        <button class="btn btn-outline" id="copy-email" data-i18n="cta.copy">Copy my email</button>
+      </div>
+      <p class="mini"><strong>Email:</strong> <a href="mailto:mohamed.mokhtari.pro@gmail.com" id="email-link">mohamed.mokhtari.pro@gmail.com</a></p>
+    </section>
+
+    <footer class="site-foot" role="contentinfo">
+      <div class="container tiny">
+        <p data-i18n="foot.legal">References: Directive (EU) 2019/882; EN 301 549 v3.2.1; WCAG 2.2 / WAI‑ARIA 1.2.</p>
+        <p class="muted"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32019L0882" target="_blank" rel="noopener">EUR‑Lex 32019L0882</a></p>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
