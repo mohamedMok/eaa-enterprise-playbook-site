@@ -532,27 +532,150 @@
         </div>
 
         <h3 data-i18n="fe.focus">2) Visible focus (tokenized)</h3>
-        <pre class="code"><code>:root{--focus-outer:#000;--focus-mid:#fff}
-:focus-visible{outline:2px solid var(--focus-outer);box-shadow:0 0 0 4px var(--focus-mid)}
-button:focus-visible{outline-offset:2px}</code></pre>
+        <p class="muted" data-i18n="fe.focus.explain">
+          Keep the focus ring visible and consistent across components. Use
+          tokens so themes can change colors without breaking contrast. Never
+          remove outlines; enhance them. Add a fallback for high-contrast mode.
+        </p>
+
+        <div class="code" role="region" aria-label="Focus tokens and styles">
+          <pre><code>/* Tokens */
+:root {
+  --focus-outer: #000;
+  --focus-mid: #fff;
+}
+
+/* Keyboard focus only (Chrome/Firefox/Edge/Safari) */
+:focus-visible {
+  outline: 2px solid var(--focus-outer);
+  box-shadow: 0 0 0 4px var(--focus-mid);
+}
+
+/* Small offset on focusable controls */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* High-contrast / Windows forced colors */
+@media (forced-colors: active) {
+  :focus, :focus-visible {
+    outline: 2px solid CanvasText;
+    box-shadow: 0 0 0 4px Canvas; /* visible halo */
+  }
+}
+</code></pre>
+        </div>
 
         <h3 data-i18n="fe.alt">3) Images: the right <code>alt</code></h3>
-        <pre
-          class="code"
-        ><code>&lt;img src="hero.jpg" alt=""&gt; <!-- decorative -->
-&lt;img src="chart.png" alt="Monthly sales trend (Jan–Jun)"&gt; <!-- informative --></code></pre>
+        <p class="muted" data-i18n="fe.alt.explain">
+          Use empty <code>alt</code> for purely decorative images. For
+          informative images, describe what matters. For complex charts, keep
+          the <code>alt</code> short and add a caption or data table.
+        </p>
+
+        <div class="code" role="region" aria-label="Image alt patterns">
+          <pre><code>&lt;!-- Decorative (ignored by screen readers) --&gt;
+&lt;img src="hero.jpg" alt=""&gt;
+
+&lt;!-- Informative --&gt;
+&lt;img src="chart.png" alt="Monthly sales trend, Jan–Jun"&gt;
+
+&lt;!-- Functional icon inside a control: the text label carries the name --&gt;
+&lt;button type="button"&gt;
+  &lt;img src="download.svg" alt="" aria-hidden="true"&gt;
+  &lt;span&gt;Download PDF&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;!-- Complex chart: brief alt + caption with details or link to data --&gt;
+&lt;figure&gt;
+  &lt;img src="revenue-line.png" alt="Revenue line chart, 2024" aria-describedby="rev-desc"&gt;
+  &lt;figcaption id="rev-desc"&gt;Revenue grows from €1.2M (Q1) to €2.0M (Q4). 
+    &lt;a href="#revenue-table"&gt;See data table&lt;/a&gt;.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+        </div>
 
         <h3 data-i18n="fe.links">4) Buttons, links, accessible name</h3>
-        <pre
-          class="code"
-        ><code>&lt;button type="button"&gt;Open menu&lt;/button&gt;
-&lt;a href="/pricing"&gt;View pricing&lt;/a&gt; <!-- avoid generic “Click here” --></code></pre>
+        <p class="muted" data-i18n="fe.links.explain">
+          Use a <code>&lt;button&gt;</code> for actions on the page and a
+          <code>&lt;a&gt;</code> for navigation. The accessible name should
+          match the visible label. Avoid generic text like “Click here”.
+        </p>
 
-        <h3 data-i18n="fe.forms">5) Checkout forms (e‑commerce)</h3>
-        <pre class="code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
-&lt;input id="email" name="email" type="email" autocomplete="email" required aria-describedby="h-email"&gt;
-&lt;div id="h-email"&gt;We’ll only use this to send your receipt.&lt;/div&gt;
-&lt;div class="error" role="alert"&gt;Invalid email&lt;/div&gt;</code></pre>
+        <div
+          class="code"
+          role="region"
+          aria-label="Buttons vs links, accessible name"
+        >
+          <pre><code>&lt;!-- Action: button --&gt;
+&lt;button type="button" aria-expanded="false" aria-controls="main-menu"&gt;Open menu&lt;/button&gt;
+
+&lt;!-- Navigation: link --&gt;
+&lt;a href="/pricing"&gt;View pricing&lt;/a&gt; &lt;!-- not "Click here" --&gt;
+
+&lt;!-- Keep label in name (helps voice control) --&gt;
+&lt;button aria-label="Search"&gt;Search&lt;/button&gt;
+
+&lt;!-- Don’t use clickable divs --&gt;
+&lt;!-- &lt;div onclick="…"&gt;Open menu&lt;/div&gt;  ✗ --&gt;
+</code></pre>
+        </div>
+
+        <h3 data-i18n="fe.forms">5) Checkout forms (e-commerce)</h3>
+        <p class="muted" data-i18n="fe.forms.explain">
+          Always pair inputs with visible labels, help text via
+          <code>aria-describedby</code>, and clear errors announced with
+          <code>role="alert"</code>. Use <code>autocomplete</code> tokens so
+          browsers can assist.
+        </p>
+
+        <div
+          class="code"
+          role="region"
+          aria-label="Accessible checkout form snippet"
+        >
+          <pre><code>&lt;!-- Email field --&gt;
+&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" name="email" type="email"
+       autocomplete="email" required
+       aria-describedby="email-help email-error"
+       aria-invalid="false"&gt;
+&lt;div id="email-help"&gt;We’ll only use this to send your receipt.&lt;/div&gt;
+&lt;div id="email-error" class="error" role="alert" hidden&gt;Enter a valid email address.&lt;/div&gt;
+
+&lt;!-- Address (example of useful autocomplete tokens) --&gt;
+&lt;label for="address"&gt;Street address&lt;/label&gt;
+&lt;input id="address" name="address" type="text" autocomplete="street-address"&gt;
+
+&lt;label for="postal"&gt;Postal code&lt;/label&gt;
+&lt;input id="postal" name="postal" type="text" inputmode="numeric" autocomplete="postal-code"&gt;
+
+&lt;!-- Payment method (grouped) --&gt;
+&lt;fieldset&gt;
+  &lt;legend&gt;Payment method&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="pay" value="card"&gt; Card&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="pay" value="paypal"&gt; PayPal&lt;/label&gt;
+&lt;/fieldset&gt;
+
+&lt;!-- Minimal JS pattern for error toggle --&gt;
+&lt;script&gt;
+  // Example: set error when empty
+  const email = document.getElementById('email');
+  const err = document.getElementById('email-error');
+  email.addEventListener('blur', () =&gt; {
+    const bad = !email.value || !email.checkValidity();
+    email.setAttribute('aria-invalid', bad);
+    err.hidden = !bad;
+  });
+&lt;/script&gt;
+</code></pre>
+        </div>
       </section>
 
       <section id="usecases" class="container">
@@ -658,62 +781,360 @@ button:focus-visible{outline-offset:2px}</code></pre>
 
       <section id="checklist" class="container">
         <h2 data-i18n="cl.h">AA checklist</h2>
-        <ul class="checklist">
-          <li data-i18n="cl.i1">
-            H1 only once; logical H2/H3; no skipped levels.
-          </li>
-          <li data-i18n="cl.i2">
-            Skip link; landmarks &lt;main&gt;/&lt;nav&gt; etc.
-          </li>
-          <li data-i18n="cl.i3">
-            Full keyboard navigation; focus always visible.
-          </li>
-          <li data-i18n="cl.i4">
-            Links with meaningful text; no “click here”.
-          </li>
-          <li data-i18n="cl.i5">Images: good alt; decorative as empty alt.</li>
-          <li data-i18n="cl.i6">
-            Contrast (text ≥ 4.5:1; UI ≥ 3:1); strong :focus.
-          </li>
-          <li data-i18n="cl.i7">
-            Forms: labels, help, errors, ARIA status, autocomplete.
-          </li>
-          <li data-i18n="cl.i8">
-            Reflow at 320 px; 200% zoom; no horizontal scroll.
-          </li>
-          <li data-i18n="cl.i9">Document language; mark language changes.</li>
-          <li data-i18n="cl.i10">
-            Downloadable docs accessible or HTML alternative.
-          </li>
-          <li data-i18n="cl.i11">
-            Public accessibility statement + feedback channel.
-          </li>
-        </ul>
+        <p class="muted" data-i18n="cl.intro">
+          Tick each item as you verify it. Tips explain how to test. Links open
+          the official W3C guidance.
+        </p>
+
+        <form
+          id="aa-checklist"
+          class="card"
+          role="group"
+          aria-labelledby="cl.h"
+        >
+          <ul class="checklist">
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i1" />
+                <span data-i18n="cl.i1.label"
+                  >Headings: one H1; H2/H3 in order; no skipped levels.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i1.how"
+                  >Test: open the headings list (NVDA: Insert+F7 →
+                  Headings).</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
+                  >WCAG 1.3.1</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html"
+                  >2.4.6</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i2" />
+                <span data-i18n="cl.i2.label"
+                  >Skip link; landmarks &lt;main&gt;/&lt;nav&gt; etc.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i2.how"
+                  >Test: Tab once from top → skip link appears and jumps to
+                  &lt;main&gt;.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html"
+                  >WCAG 2.4.1</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i3" />
+                <span data-i18n="cl.i3.label"
+                  >Full keyboard navigation; focus always visible.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i3.how"
+                  >Test: Tab/Shift+Tab; arrow keys in menus; Esc closes dialogs;
+                  no traps.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
+                  >2.1.1</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html"
+                  >2.1.2</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+                  >2.4.7</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i4" />
+                <span data-i18n="cl.i4.label"
+                  >Links have meaningful text; avoid “Click here”.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i4.how"
+                  >Test: links make sense out of context (NVDA: Insert+F7 →
+                  Links).</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html"
+                  >WCAG 2.4.4</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i5" />
+                <span data-i18n="cl.i5.label"
+                  >Images: correct alt; decorative images use empty alt.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i5.how"
+                  >Test: decorative = <code>alt=""</code>; informative = short,
+                  relevant description.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+                  >WCAG 1.1.1</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i6" />
+                <span data-i18n="cl.i6.label"
+                  >Contrast: text ≥ 4.5:1; UI ≥ 3:1; strong focus ring.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i6.how"
+                  >Test: use a contrast checker; verify focus ring contrast in
+                  light/dark themes.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+                  >1.4.3</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+                  >1.4.11</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
+                  >2.4.7</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i7" />
+                <span data-i18n="cl.i7.label"
+                  >Forms: labels, help, errors, status messages,
+                  autocomplete.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i7.how"
+                  >Test: labels are announced; errors appear and are read; use
+                  <code>autocomplete</code>.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html"
+                  >3.3.1</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
+                  >3.3.2</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
+                  >4.1.3</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html"
+                  >1.3.5</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i8" />
+                <span data-i18n="cl.i8.label"
+                  >Reflow at 320 px; 200% zoom; no horizontal scroll.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i8.how"
+                  >Test: narrow viewport or dev tools to 320 px; zoom to 200% —
+                  content still works.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+                  >1.4.10</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html"
+                  >1.4.4</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i9" />
+                <span data-i18n="cl.i9.label"
+                  >Document language; mark language changes.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i9.how"
+                  >Test: <code>&lt;html lang="…"&gt;</code> is set; foreign
+                  terms are wrapped with <code>lang</code>.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html"
+                  >3.1.1</a
+                >
+                ·
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html"
+                  >3.1.2</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i10" />
+                <span data-i18n="cl.i10.label"
+                  >Downloadable docs are accessible or have an HTML
+                  alternative.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i10.how"
+                  >Test: tagged PDFs or accessible formats; otherwise link to an
+                  equivalent HTML page.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/TR/wcag2ict/"
+                  >W3C WCAG2ICT</a
+                >
+              </div>
+            </li>
+
+            <li>
+              <label>
+                <input type="checkbox" data-key="cl.i11" />
+                <span data-i18n="cl.i11.label"
+                  >Public accessibility statement + feedback channel.</span
+                >
+              </label>
+              <div class="tiny muted">
+                <span data-i18n="cl.i11.how"
+                  >Test: link in the footer; form or email to report issues;
+                  response time documented.</span
+                >
+                <a
+                  target="_blank"
+                  rel="noopener"
+                  href="https://www.w3.org/WAI/planning/statements/"
+                  >W3C — Accessibility Statements</a
+                >
+              </div>
+            </li>
+          </ul>
+
+          <div class="tiny muted" id="cl-note" data-i18n="cl.note">
+            Your checks are saved locally in this browser only.
+          </div>
+        </form>
       </section>
 
       <section id="contact" class="container">
         <h2 data-i18n="contact.h">Consulting — let’s talk</h2>
-        <p data-i18n="contact.p">
-          Need enterprise‑scale help (EN 301 549 audits, design system
-          hardening, CI/CD, training, vendor governance)?
+        <p class="tagline" data-i18n="contact.p">
+          I hope this guide helps. If you’d like tailored, enterprise-grade
+          support to deliver the EAA with confidence, I’d love to speak with
+          you.
         </p>
-        <div class="cta">
+
+        <div class="cta" role="group" aria-label="Contact actions">
           <a
-            class="btn"
-            id="cta-email-2"
-            href="mailto:mohamed.mokhtari.pro@gmail.com?subject=EAA%20consulting%20request&body=Hello,%20I'd%20like%20to%20discuss%20EAA%20compliance%20for%20our%20organization."
-            data-i18n="cta.email"
-            >Email me for consulting</a
+            class="button"
+            target="_blank"
+            rel="noopener"
+            href="https://calendly.com/d/cswr-pm4-xh2/consulting-session"
+            data-i18n="contact.cta.cal"
           >
-          <button class="btn btn-outline" id="copy-email" data-i18n="cta.copy">
-            Copy my email
-          </button>
+            Book a 30-min consulting session
+          </a>
+          <br />
+          <!-- Optional second CTA: replace with your email -->
+          <a
+            class="button button--ghost"
+            href="mailto:mohamed.mokhtari.pro@gmail.com?subject=EAA%20Enterprise%20Consulting"
+            data-i18n="contact.cta.mail"
+          >
+            Prefer email? Write to me
+          </a>
         </div>
-        <p class="mini">
-          <strong>Email:</strong>
-          <a href="mailto:mohamed.mokhtari.pro@gmail.com" id="email-link"
-            >mohamed.mokhtari.pro@gmail.com</a
-          >
+
+        <p class="mini muted" id="contact-note" data-i18n="contact.note">
+          No commitment: we’ll review your context, outline a pragmatic plan,
+          and share quick wins you can ship immediately.
         </p>
       </section>
 
