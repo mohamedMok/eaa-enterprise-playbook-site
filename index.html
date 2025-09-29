@@ -836,318 +836,385 @@ textarea:focus-visible {
         <!-- Live region for checklist changes -->
         <div id="cl-live" class="sr-only" aria-live="polite"></div>
 
-        <form
-          id="aa-checklist"
-          class="card"
-          aria-labelledby="h-checklist"
-        >
+        <form id="aa-checklist" class="card" aria-labelledby="h-checklist">
           <ul class="checklist">
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i1" />
+              <input
+                type="checkbox"
+                id="cl-i1"
+                data-key="cl.i1"
+                aria-describedby="cl-i1-how"
+              />
+              <label for="cl-i1">
                 <span data-i18n="cl.i1.label"
                   >Headings: one H1; H2/H3 in order; no skipped levels.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i1.how"
-                  >Test: open the headings list (NVDA: Insert+F7 →
-                  Headings).</span
-                >
+                <span id="cl-i1-how" data-i18n="cl.i1.how">
+                  Test: open the headings list (NVDA: Insert+F7 → Headings).
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships.html"
-                  >WCAG 1.3.1
-                  <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  WCAG 1.3.1 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html"
-                  >2.4.6 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  2.4.6 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i2" />
-                <span data-i18n="cl.i2.label"
-                  >Skip link; landmarks <code>&lt;main&gt;</code>/<code>&lt;nav&gt;</code> etc.</span
-                >
+              <input
+                type="checkbox"
+                id="cl-i2"
+                data-key="cl.i2"
+                aria-describedby="cl-i2-how"
+              />
+              <label for="cl-i2">
+                <span data-i18n="cl.i2.label">
+                  Skip link; landmarks <code>&lt;main&gt;</code>/<code
+                    >&lt;nav&gt;</code
+                  >
+                  etc.
+                </span>
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i2.how"
-                  >Test: Tab once from top → skip link appears and jumps to
-                  <code>&lt;main&gt;</code>.</span
-                >
+                <span id="cl-i2-how" data-i18n="cl.i2.how">
+                  Test: Tab once from top → skip link appears and jumps to
+                  <code>&lt;main&gt;</code>.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks.html"
-                  >WCAG 2.4.1
-                  <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  WCAG 2.4.1 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i3" />
+              <input
+                type="checkbox"
+                id="cl-i3"
+                data-key="cl.i3"
+                aria-describedby="cl-i3-how"
+              />
+              <label for="cl-i3">
                 <span data-i18n="cl.i3.label"
                   >Full keyboard navigation; focus always visible.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i3.how"
-                  >Test: Tab/Shift+Tab; arrow keys in menus; Esc closes dialogs;
-                  no traps.</span
-                >
+                <span id="cl-i3-how" data-i18n="cl.i3.how">
+                  Test: Tab/Shift+Tab; arrow keys in menus; Esc closes dialogs;
+                  no traps.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html"
-                  >2.1.1 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  2.1.1 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap.html"
-                  >2.1.2 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  2.1.2 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
-                  >2.4.7 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  2.4.7 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i4" />
+              <input
+                type="checkbox"
+                id="cl-i4"
+                data-key="cl.i4"
+                aria-describedby="cl-i4-how"
+              />
+              <label for="cl-i4">
                 <span data-i18n="cl.i4.label"
                   >Links have meaningful text; avoid “Click here”.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i4.how"
-                  >Test: links make sense out of context (NVDA: Insert+F7 →
-                  Links).</span
-                >
+                <span id="cl-i4-how" data-i18n="cl.i4.how">
+                  Test: links make sense out of context (NVDA: Insert+F7 →
+                  Links).
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html"
-                  >WCAG 2.4.4
-                  <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  WCAG 2.4.4 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i5" />
+              <input
+                type="checkbox"
+                id="cl-i5"
+                data-key="cl.i5"
+                aria-describedby="cl-i5-how"
+              />
+              <label for="cl-i5">
                 <span data-i18n="cl.i5.label"
                   >Images: correct alt; decorative images use empty alt.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i5.how"
-                  >Test: decorative = <code>alt=""</code>; informative = short,
-                  relevant description.</span
-                >
+                <span id="cl-i5-how" data-i18n="cl.i5.how">
+                  Test: decorative = <code>alt=""</code>; informative = short,
+                  relevant description.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
-                  >WCAG 1.1.1
-                  <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  WCAG 1.1.1 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i6" />
+              <input
+                type="checkbox"
+                id="cl-i6"
+                data-key="cl.i6"
+                aria-describedby="cl-i6-how"
+              />
+              <label for="cl-i6">
                 <span data-i18n="cl.i6.label"
                   >Contrast: text ≥ 4.5:1; UI ≥ 3:1; strong focus ring.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i6.how"
-                  >Test: use a contrast checker; verify focus ring contrast in
-                  light/dark themes.</span
-                >
+                <span id="cl-i6-how" data-i18n="cl.i6.how">
+                  Test: use a contrast checker; verify focus ring contrast in
+                  light/dark themes.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
-                  >1.4.3 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  1.4.3 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
-                  >1.4.11 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  1.4.11 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"
-                  >2.4.7 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  2.4.7 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i7" />
-                <span data-i18n="cl.i7.label"
-                  >Forms: labels, help, errors, status messages,
-                  autocomplete.</span
-                >
+              <input
+                type="checkbox"
+                id="cl-i7"
+                data-key="cl.i7"
+                aria-describedby="cl-i7-how"
+              />
+              <label for="cl-i7">
+                <span data-i18n="cl.i7.label">
+                  Forms: labels, help, errors, status messages, autocomplete.
+                </span>
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i7.how"
-                  >Test: labels are announced; errors appear and are read; use
-                  <code>autocomplete</code>.</span
-                >
+                <span id="cl-i7-how" data-i18n="cl.i7.how">
+                  Test: labels are announced; errors appear and are read; use
+                  <code>autocomplete</code>.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html"
-                  >3.3.1 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  3.3.1 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
-                  >3.3.2 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  3.3.2 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"
-                  >4.1.3 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  4.1.3 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html"
-                  >1.3.5 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  1.3.5 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i8" />
+              <input
+                type="checkbox"
+                id="cl-i8"
+                data-key="cl.i8"
+                aria-describedby="cl-i8-how"
+              />
+              <label for="cl-i8">
                 <span data-i18n="cl.i8.label"
                   >Reflow at 320 px; 200% zoom; no horizontal scroll.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i8.how"
-                  >Test: narrow viewport or dev tools to 320 px; zoom to 200% —
-                  content still works.</span
-                >
+                <span id="cl-i8-how" data-i18n="cl.i8.how">
+                  Test: narrow viewport or dev tools to 320 px; zoom to 200% —
+                  content still works.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
-                  >1.4.10 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  1.4.10 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html"
-                  >1.4.4 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  1.4.4 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i9" />
+              <input
+                type="checkbox"
+                id="cl-i9"
+                data-key="cl.i9"
+                aria-describedby="cl-i9-how"
+              />
+              <label for="cl-i9">
                 <span data-i18n="cl.i9.label"
                   >Document language; mark language changes.</span
                 >
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i9.how"
-                  >Test: <code>&lt;html lang="…"&gt;</code> is set; foreign
-                  terms are wrapped with <code>lang</code>.</span
-                >
+                <span id="cl-i9-how" data-i18n="cl.i9.how">
+                  Test: <code>&lt;html lang="…"&gt;</code> is set; foreign terms
+                  are wrapped with <code>lang</code>.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html"
-                  >3.1.1 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  3.1.1 <span class="sr-only">(opens in a new tab)</span>
+                </a>
                 ·
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html"
-                  >3.1.2 <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  3.1.2 <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i10" />
-                <span data-i18n="cl.i10.label"
-                  >Downloadable docs are accessible or have an HTML
-                  alternative.</span
-                >
+              <input
+                type="checkbox"
+                id="cl-i10"
+                data-key="cl.i10"
+                aria-describedby="cl-i10-how"
+              />
+              <label for="cl-i10">
+                <span data-i18n="cl.i10.label">
+                  Downloadable docs are accessible or have an HTML alternative.
+                </span>
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i10.how"
-                  >Test: tagged PDFs or accessible formats; otherwise link to an
-                  equivalent HTML page.</span
-                >
+                <span id="cl-i10-how" data-i18n="cl.i10.how">
+                  Test: tagged PDFs or accessible formats; otherwise link to an
+                  equivalent HTML page.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/TR/wcag2ict/"
-                  >W3C WCAG2ICT
-                  <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  W3C WCAG2ICT <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
 
             <li>
-              <label>
-                <input type="checkbox" data-key="cl.i11" />
-                <span data-i18n="cl.i11.label"
-                  >Public accessibility statement + feedback channel.</span
-                >
+              <input
+                type="checkbox"
+                id="cl-i11"
+                data-key="cl.i11"
+                aria-describedby="cl-i11-how"
+              />
+              <label for="cl-i11">
+                <span data-i18n="cl.i11.label">
+                  Public accessibility statement + feedback channel.
+                </span>
               </label>
               <div class="tiny muted">
-                <span data-i18n="cl.i11.how"
-                  >Test: link in the footer; form or email to report issues;
-                  response time documented.</span
-                >
+                <span id="cl-i11-how" data-i18n="cl.i11.how">
+                  Test: link in the footer; form or email to report issues;
+                  response time documented.
+                </span>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.w3.org/WAI/planning/statements/"
-                  >W3C — Accessibility Statements
-                  <span class="sr-only">(opens in a new tab)</span></a
                 >
+                  W3C — Accessibility Statements
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </li>
           </ul>
